@@ -24,6 +24,7 @@ export default [
         tsconfigOverride: {
           compilerOptions: {
             declaration: true,
+            module: "ES2015",
           },
           include: null,
           preserveModules: true,

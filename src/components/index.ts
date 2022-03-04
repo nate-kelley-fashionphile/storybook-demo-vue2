@@ -1,3 +1,3 @@
-import SampleComponent from "./Sample";
 export * from "./Icons";
-export { SampleComponent };
+export * from "./Buttons";
+export * from "./Sample";
