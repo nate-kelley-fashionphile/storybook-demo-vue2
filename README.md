@@ -1,29 +1,35 @@
-# storybook-demo-vue2
+# Description
 
-## Project setup
+A demo project for fashionphile to showcase a common component library for Vue2
+
+# How to Use
+
+## Tree Shaking
+
 ```
-npm install
+<template>
+  <div class="hello-world">
+    <AppButton text="Howdy" />
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import { AppButton } from "@nate-kelley-fashionphile/vue2-common";
+
+@Component({ components: { AppButton } })
+export default class HelloWorld extends Vue {
+  //
+}
+</script>
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Plugin
 
-### Compiles and minifies for production
 ```
-npm run build
-```
+//main.ts file
 
-### Run your unit tests
-```
-npm run test:unit
-```
+import Plugin from "@nate-kelley-fashionphile/vue2-common";
 
-### Lints and fixes files
+Vue.use(Plugin)
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
