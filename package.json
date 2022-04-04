@@ -12,12 +12,13 @@
     "build": "rollup -c",
     "build-storybook": "build-storybook",
     "lint": "vue-cli-service lint",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "serve": "vue-cli-service serve",
     "storybook": "start-storybook -p 6006",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5"
   },
   "devDependencies": {
