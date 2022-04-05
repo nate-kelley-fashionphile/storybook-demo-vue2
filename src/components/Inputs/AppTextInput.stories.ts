@@ -1,10 +1,15 @@
 import AppTextInputComponent from "./AppTextInput.vue";
+import { InputTypes } from "./interfaces";
 
 export default {
   title: "Inputs",
   component: AppTextInputComponent,
   argTypes: {
-    //
+    type: {
+      options: [...Object.keys(InputTypes)],
+      control: { type: "select" },
+      defaultValue: Object.keys(InputTypes)[0],
+    },
   },
 };
 

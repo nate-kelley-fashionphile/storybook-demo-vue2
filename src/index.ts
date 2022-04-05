@@ -1,5 +1,6 @@
 import * as components from "./components/index";
 import "./stylesheets/variables.scss";
+import "./stylesheets/fonts.scss";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import Vue from "vue";
 

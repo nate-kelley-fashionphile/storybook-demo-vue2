@@ -24,8 +24,7 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "src/components/Buttons/AppButton.stories.js"
+    "tests/**/*.tsx"
   ],
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.stories.ts"]
 }

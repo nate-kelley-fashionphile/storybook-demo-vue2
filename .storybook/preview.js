@@ -7,6 +7,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(BootstrapVue);
 
 import "../src/stylesheets/variables.scss";
+import "../src/stylesheets/fonts.scss";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
