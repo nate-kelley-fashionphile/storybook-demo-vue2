@@ -14,7 +14,7 @@ export default {
   },
 };
 
-export const AppButton = (args: any, { argTypes }) => ({
+export const AppButton = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { AppButtonComponent },
   template: `<AppButtonComponent v-bind="$props" />`,

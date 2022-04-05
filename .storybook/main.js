@@ -8,6 +8,21 @@ module.exports = {
       use: ["style-loader", "css-loader", "sass-loader"],
     });
 
+    config.module.rules.push({
+      test: /\.tsx?$/,
+      exclude: /node_modules/,
+      use: [
+        "babel-loader",
+        {
+          loader: "ts-loader",
+          options: {
+            appendTsSuffixTo: [/\.vue$/],
+            appendTsxSuffixTo: [/\.vue$/],
+          },
+        },
+      ],
+    });
+
     // Return the altered config
     return config;
   },

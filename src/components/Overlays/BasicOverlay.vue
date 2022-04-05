@@ -6,15 +6,20 @@
         <div class="overlay__content">
           <slot></slot>
         </div>
-        <AppIconButton class="close-icon" icon="times" type="glass" @onClick="onExitClick" />
+        <AppIconButton
+          class="close-icon"
+          icon="times"
+          type="glass"
+          @onClick="onExitClick"
+        />
       </div>
     </transition>
   </Portal>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
-import { AppIconButton } from '../Button';
+import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
+import { AppIconButton } from "../Buttons";
 
 @Component({ components: { AppIconButton } })
 export default class BasicOverlay extends Vue {
@@ -22,17 +27,17 @@ export default class BasicOverlay extends Vue {
   @Prop({ default: true }) useExitButton: boolean;
   @Prop() isOpen!: boolean;
 
-  @Emit('onExitClick')
+  @Emit("onExitClick")
   onExitClick() {
     return true;
   }
 
-  @Watch('isOpen')
+  @Watch("isOpen")
   isOpenChanged() {
-    const appElement = document.getElementById('showroom-assistant-app');
-    const styleOfOverflow = this.isOpen ? 'hidden' : 'initial';
+    const appElement = document.getElementById("showroom-assistant-app");
+    const styleOfOverflow = this.isOpen ? "hidden" : "initial";
     //@ts-ignore
-    appElement?.style['overflow'] = styleOfOverflow;
+    appElement.style["overflow"] = styleOfOverflow;
   }
 }
 </script>

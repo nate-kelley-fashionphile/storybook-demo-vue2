@@ -20,11 +20,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
-import AppImage, { AppImageBG } from '../Image';
-import AppButton from '../Button';
-import isEmpty from 'lodash/isEmpty';
-import { CardButton } from './interfaces';
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import AppImage, { AppImageBG } from "../Image";
+import AppButton from "../Buttons";
+import isEmpty from "lodash/isEmpty";
+import { CardButton } from "./interfaces";
 
 @Component({ components: { AppImage, AppButton } })
 export default class AppCard extends Vue {
@@ -45,7 +45,7 @@ export default class AppCard extends Vue {
     return !isEmpty(this.buttons);
   }
 
-  @Emit('onImageLoaded')
+  @Emit("onImageLoaded")
   onImageLoaded() {
     return;
   }

@@ -9,23 +9,23 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
+import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
 
 @Component({})
 export default class ShelfOverlay extends Vue {
   @Prop() isOpen: boolean;
 
-  @Emit('close')
+  @Emit("close")
   close() {
     return;
   }
 
-  @Watch('isOpen')
+  @Watch("isOpen")
   isOpenChanged() {
-    const appElement = document.getElementById('showroom-assistant-app');
-    const styleOfOverflow = this.isOpen ? 'hidden' : 'initial';
+    const appElement = document.getElementById("showroom-assistant-app");
+    const styleOfOverflow = this.isOpen ? "hidden" : "initial";
     //@ts-ignore
-    appElement?.style['overflow'] = styleOfOverflow;
+    appElement.style["overflow"] = styleOfOverflow;
   }
 }
 </script>

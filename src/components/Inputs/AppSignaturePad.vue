@@ -14,20 +14,20 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
-import VueSignaturePad from 'vue-signature-pad';
-import { AppIconButton } from '../Button';
+import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
+import VueSignaturePad from "vue-signature-pad";
+import { AppIconButton } from "../Buttons";
 
 Vue.use(VueSignaturePad);
 
 @Component({ components: { AppIconButton } })
 export default class AppSignaturePad extends Vue {
   @Prop() value: ImageData;
-  @Prop({ default: 'black' }) color: string;
+  @Prop({ default: "black" }) color: string;
   @Prop() lockPad: boolean;
   @Prop({ default: true }) useUndo: boolean;
 
-  signaturePadRefName = 'signaturePadRefName';
+  signaturePadRefName = "signaturePadRefName";
 
   get options() {
     return {
@@ -41,30 +41,36 @@ export default class AppSignaturePad extends Vue {
     (this.$refs[this.signaturePadRefName] as VueSignaturePad).undoSignature();
   }
 
-  @Emit('onBegin')
+  @Emit("onBegin")
   onBegin() {
     return;
   }
 
-  @Emit('onEnd')
+  @Emit("onEnd")
   onEnd() {
     this.input();
     return;
   }
 
-  @Emit('input')
+  @Emit("input")
   input() {
-    const { data } = (this.$refs[this.signaturePadRefName] as VueSignaturePad).saveSignature();
+    const { data } = (
+      this.$refs[this.signaturePadRefName] as VueSignaturePad
+    ).saveSignature();
     return data;
   }
 
-  @Watch('lockPad')
+  @Watch("lockPad")
   onLockPad() {
     if (this.lockPad) {
       this.input();
-      (this.$refs[this.signaturePadRefName] as VueSignaturePad).lockSignaturePad();
+      (
+        this.$refs[this.signaturePadRefName] as VueSignaturePad
+      ).lockSignaturePad();
     } else {
-      (this.$refs[this.signaturePadRefName] as VueSignaturePad).openSignaturePad();
+      (
+        this.$refs[this.signaturePadRefName] as VueSignaturePad
+      ).openSignaturePad();
     }
   }
 }

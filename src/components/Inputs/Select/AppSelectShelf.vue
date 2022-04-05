@@ -1,14 +1,26 @@
 <template>
   <div class="app-select-shelf">
-    <div class="app-select-shelf__selected" :class="{ 'select-disabled': this.disabled }" @click="open">
+    <div
+      class="app-select-shelf__selected"
+      :class="{ 'select-disabled': this.disabled }"
+      @click="open"
+    >
       <div
         class="w-100 d-flex justify-content-between align-items-center"
         :class="{ 'no-options': !this.hasValueOptions }"
         v-if="multiple || removeable"
       >
         <div v-if="hasValueOptions">
-          <div class="app-select-shelf__selected-option mb-1" v-for="selected in value" :key="selected.code">
-            <AppImage v-if="selected.image" class="app-select-shelf__image" :src="selected.image" />
+          <div
+            class="app-select-shelf__selected-option mb-1"
+            v-for="selected in value"
+            :key="selected.code"
+          >
+            <AppImage
+              v-if="selected.image"
+              class="app-select-shelf__image"
+              :src="selected.image"
+            />
             <div class="ml-3 app-select-shelf__label">{{ selected.label }}</div>
           </div>
         </div>
@@ -23,7 +35,11 @@
         :class="{ 'no-options': !this.hasValueOptions }"
       >
         <div class="app-select-shelf__selected-option">
-          <AppImage v-if="value && value.image" class="app-select-shelf__image" :src="value.image" />
+          <AppImage
+            v-if="value && value.image"
+            class="app-select-shelf__image"
+            :src="value.image"
+          />
           <div class="ml-3 app-select-shelf__label">{{ selectedText }}</div>
         </div>
         <div class="app-select-shelf__caret">
@@ -41,15 +57,25 @@
           :class="{ selected: isSelected(option) }"
           @click.self="onClick(option)"
         >
-          <div v-if="removeable" class="app-select-shelf__remove" @click="remove(option)">
+          <div
+            v-if="removeable"
+            class="app-select-shelf__remove"
+            @click="remove(option)"
+          >
             <AppIconButton icon="times" type="primary" :round="true" />
           </div>
           <div v-if="option.image" class="app-select-shelf__image">
             <AppImage :src="option.image" />
-            <div class="app-select-shelf__image-overlay" :class="{ selected: isSelected(option) }">
+            <div
+              class="app-select-shelf__image-overlay"
+              :class="{ selected: isSelected(option) }"
+            >
               <transition name="bounce">
                 <div v-if="isSelected(option)">
-                  <AppIcon class="app-select-shelf__image-overlay-icon" icon="check" />
+                  <AppIcon
+                    class="app-select-shelf__image-overlay-icon"
+                    icon="check"
+                  />
                 </div>
               </transition>
             </div>
@@ -58,9 +84,21 @@
         </div>
         <div class="app-select-shelf__spacer"></div>
       </div>
-      <div v-if="multiple || removeable" class="app-select-shelf__multiple-button">
-        <AppButton class="mr-3" text="cancel" type="secondary" @onClick="reset" />
-        <AppButton :block="multiple && !removeable" :text="multipleButtonText" @onClick="onClickFinish" />
+      <div
+        v-if="multiple || removeable"
+        class="app-select-shelf__multiple-button"
+      >
+        <AppButton
+          class="mr-3"
+          text="cancel"
+          type="secondary"
+          @onClick="reset"
+        />
+        <AppButton
+          :block="multiple && !removeable"
+          :text="multipleButtonText"
+          @onClick="onClickFinish"
+        />
       </div>
     </ShelfOverlay>
 
@@ -71,21 +109,26 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
-import AppImage from '../../Image';
-import { ShelfOverlay } from '../../Overlays';
-import AppButton, { AppIconButton } from '../../Button';
-import isEmpty from 'lodash/isEmpty';
-import { timeout, toggleItemInArray } from '../../../helpers';
-import AppIcon from '../../Icon';
-import isArray from 'lodash/isArray';
-import { SelectDataDynamic } from './interfaces';
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import AppImage from "../../Image";
+import { ShelfOverlay } from "../../Overlays";
+import AppButton, { AppIconButton } from "../../Buttons";
+import isEmpty from "lodash/isEmpty";
+import { timeout, toggleItemInArray } from "../../../helpers";
+import AppIcon from "../../Icon";
+import isArray from "lodash/isArray";
+import { SelectDataDynamic } from "./interfaces";
 
-@Component({ components: { AppImage, ShelfOverlay, AppButton, AppIcon, AppIconButton } })
+@Component({
+  components: { AppImage, ShelfOverlay, AppButton, AppIcon, AppIconButton },
+})
 export default class AppSelectShelf extends Vue {
-  @Prop({ default: () => ({}) }) value!: SelectDataDynamic | SelectDataDynamic[] | null;
+  @Prop({ default: () => ({}) }) value!:
+    | SelectDataDynamic
+    | SelectDataDynamic[]
+    | null;
   @Prop() options!: SelectDataDynamic[];
-  @Prop({ default: 'Sorry, no matching options.' }) noOptionsText: string;
+  @Prop({ default: "Sorry, no matching options." }) noOptionsText: string;
   @Prop({ default: true }) preselectFirst: boolean;
   @Prop() multiple: boolean;
   @Prop() disabled: boolean;
@@ -99,7 +142,7 @@ export default class AppSelectShelf extends Vue {
   }
 
   get hasImages() {
-    return !isEmpty(this.images.filter(img => img));
+    return !isEmpty(this.images.filter((img) => img));
   }
 
   get hasValueOptions() {
@@ -112,7 +155,7 @@ export default class AppSelectShelf extends Vue {
 
   get selectedText() {
     if (!this.value) {
-      return 'No option selected';
+      return "No option selected";
     }
 
     if (!this.hasOptions) {
@@ -124,7 +167,7 @@ export default class AppSelectShelf extends Vue {
 
   get multipleButtonText() {
     if (this.removeable) {
-      return 'Finish';
+      return "Finish";
     }
     return `Finish - ${(this.value as SelectDataDynamic[])?.length} selected`;
   }
@@ -132,7 +175,9 @@ export default class AppSelectShelf extends Vue {
   isSelected(option: SelectDataDynamic) {
     if (this.removeable) return;
     if (this.multiple && isArray(this.value)) {
-      return (this.value as SelectDataDynamic[])?.some(({ code }) => code === option.code);
+      return (this.value as SelectDataDynamic[])?.some(
+        ({ code }) => code === option.code
+      );
     }
     return (this.value as SelectDataDynamic)?.code === option.code;
   }
@@ -141,12 +186,12 @@ export default class AppSelectShelf extends Vue {
     this.isOpen = true && !this.disabled;
   }
 
-  @Emit('close')
+  @Emit("close")
   close() {
     this.isOpen = false;
   }
 
-  @Emit('onClickFinish')
+  @Emit("onClickFinish")
   onClickFinish() {
     this.close();
     return;
@@ -163,17 +208,17 @@ export default class AppSelectShelf extends Vue {
     this.input(data);
   }
 
-  @Emit('input')
+  @Emit("input")
   input(data: SelectDataDynamic | SelectDataDynamic[]) {
     return data;
   }
 
-  @Emit('remove')
+  @Emit("remove")
   remove(data: SelectDataDynamic) {
     return data;
   }
 
-  @Emit('reset')
+  @Emit("reset")
   reset() {
     this.close();
     return;

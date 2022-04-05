@@ -1,5 +1,5 @@
-import { ButtonTypes } from '../Button';
-import { AppImageBG } from '../Image';
+import { ButtonTypes } from "../Buttons";
+import { AppImageBG } from "../Image";
 
 export interface CardButton {
   text: string;
@@ -12,5 +12,5 @@ export interface CardButton {
 }
 
 export enum AlertBoxTypes {
-  error = 'error',
+  error = "error",
 }

@@ -1,14 +1,20 @@
 <template>
   <div class="toggle" :style="iconStyle" @click="onClick">
-    <AppIconButton class="toggle-button" :icon="iconInternal" :round="true" :type="type" :shadow="true" />
+    <AppIconButton
+      class="toggle-button"
+      :icon="iconInternal"
+      :round="true"
+      :type="type"
+      :shadow="true"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
-import AppIcon from '../Icon';
-import { AppIconButton, ButtonTypes } from '../Button';
-import { ToggleDirection } from './interfaces';
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import AppIcon from "../Icon";
+import { AppIconButton, ButtonTypes } from "../Buttons";
+import { ToggleDirection } from "./interfaces";
 
 @Component({ components: { AppIcon, AppIconButton } })
 export default class ToggleIcon extends Vue {
@@ -16,7 +22,7 @@ export default class ToggleIcon extends Vue {
   @Prop() toggleBackground: string;
   @Prop() toggleColor: string;
   @Prop() icon: string;
-  @Prop({ default: 'white' }) type: ButtonTypes;
+  @Prop({ default: "white" }) type: ButtonTypes;
 
   get iconInternal() {
     return this.icon || `chevron-${this.direction}`;
@@ -29,7 +35,7 @@ export default class ToggleIcon extends Vue {
     };
   }
 
-  @Emit('onClick')
+  @Emit("onClick")
   onClick() {
     return;
   }

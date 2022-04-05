@@ -15,10 +15,10 @@
 <script lang="ts">
 //TODO add tooltip prop for button
 
-import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
-import AppImage from './AppImage.vue';
-import { AppImageBG } from './interfaces';
-import { AppIconButton } from '../Button';
+import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
+import AppImage from "./AppImage.vue";
+import { AppImageBG } from "./interfaces";
+import { AppIconButton } from "../Buttons";
 
 @Component({ components: { AppImage, AppIconButton } })
 export default class AppImageRotate extends Vue {
@@ -38,12 +38,12 @@ export default class AppImageRotate extends Vue {
     };
   }
 
-  @Emit('onRotate')
+  @Emit("onRotate")
   rotateImage() {
     this.internalRotate = this.internalRotate + 90;
   }
 
-  @Watch('rotate')
+  @Watch("rotate")
   rotateChanged() {
     this.internalRotate = this.rotate;
   }

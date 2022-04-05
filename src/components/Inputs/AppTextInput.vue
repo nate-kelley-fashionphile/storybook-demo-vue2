@@ -1,7 +1,10 @@
 <template>
   <div class="app-text-input">
     <label v-if="label">{{ label }}</label>
-    <div class="app-text-input__container" :class="{ focused, error, disabled }">
+    <div
+      class="app-text-input__container"
+      :class="{ focused, error, disabled }"
+    >
       <input
         ref="input"
         class="app-text-input__input"
@@ -24,18 +27,18 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
-import { InputTypes } from '../../store';
-import { AppIconSpinner } from '../Loader';
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { AppIconSpinner } from "../Loader";
+import { InputTypes } from "./interfaces";
 
 @Component({ components: { AppIconSpinner } })
 export default class AppTextInput extends Vue {
-  @Prop({ default: '' }) label: string;
-  @Prop({ default: '' }) value!: string;
+  @Prop({ default: "" }) label: string;
+  @Prop({ default: "" }) value!: string;
   @Prop({ default: false }) disabled: boolean;
   @Prop({ default: false }) error: boolean;
   @Prop({ default: false }) loading: boolean;
-  @Prop({ default: '' }) placeholder: string;
+  @Prop({ default: "" }) placeholder: string;
   @Prop({ default: InputTypes.Text }) type: InputTypes;
   @Prop() autofocus: boolean;
   @Prop() background: string;
@@ -44,7 +47,7 @@ export default class AppTextInput extends Vue {
 
   get textClass() {
     return {
-      'app-text-input__focused': this.focused,
+      "app-text-input__focused": this.focused,
     };
   }
 
@@ -54,30 +57,30 @@ export default class AppTextInput extends Vue {
     };
   }
 
-  @Emit('input')
+  @Emit("input")
   onChange(e: Event) {
     return (e.target as HTMLInputElement).value;
   }
 
-  @Emit('onFocus')
+  @Emit("onFocus")
   onFocus() {
     this.focused = true;
     return;
   }
 
-  @Emit('onLeave')
+  @Emit("onLeave")
   onLeave() {
     this.focused = false;
   }
 
-  @Emit('onEnterPress')
+  @Emit("onEnterPress")
   onEnterPress(e: Event) {
     return (e.target as HTMLInputElement).value;
   }
 
   mounted() {
     if (this.autofocus) {
-      (this.$refs['input'] as HTMLElement).focus();
+      (this.$refs["input"] as HTMLElement).focus();
     }
   }
 }
@@ -85,6 +88,9 @@ export default class AppTextInput extends Vue {
 
 <style lang="scss" scoped>
 .app-text-input {
+  &__container {
+    position: relative;
+  }
   &__focused {
     border: 1px solid #f09;
     border-color: #f09 !important;

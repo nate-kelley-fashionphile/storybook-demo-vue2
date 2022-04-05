@@ -9,40 +9,41 @@
     >
       <AppImage :bgImage="internalBgImage" />
       <transition name="fade">
-        <div v-if="useLoader && !hideLoader" class="loader-progress" :style="loadingStyle"></div>
+        <div
+          v-if="useLoader && !hideLoader"
+          class="loader-progress"
+          :style="loadingStyle"
+        ></div>
       </transition>
     </div>
     <div class="cache-images">
-      <AppImage v-for="img in images" :key="img" :src="img" @onLoaded="onLoadedImage" />
+      <AppImage
+        v-for="img in images"
+        :key="img"
+        :src="img"
+        @onLoaded="onLoadedImage"
+      />
     </div>
-
-    <AppImageLightbox
-      v-if="useLightbox && hasImages"
-      :images="__removeThisWhenBEIsReady"
-      :isOpen="openLightbox"
-      @onExitClick="toggleLightbox(false)"
-    />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
-import { AppImageBG } from './interfaces';
-import AppImage from './AppImage.vue';
-import AppImageLightbox from './AppImageLightbox.vue';
-import isEmpty from 'lodash/isEmpty';
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
+import { AppImageBG } from "./interfaces";
+import AppImage from "./AppImage.vue";
+import isEmpty from "lodash/isEmpty";
 
-@Component({ components: { AppImage, AppImageLightbox } })
+@Component({ components: { AppImage } })
 export default class AppImageHover extends Vue {
   @Prop() bgImage: AppImageBG;
   @Prop({ default: () => [] }) images: string[];
   @Prop({ default: true }) useLightbox: boolean;
   @Prop({ default: true }) useLoader: boolean;
 
-  refImageName = 'refImageName';
+  refImageName = "refImageName";
   isHovering = false;
   imageOffsetWidth = 100;
-  hoverImage = '';
+  hoverImage = "";
   openLightbox = false;
   numberOfImagesLoaded = 0;
 
@@ -54,7 +55,7 @@ export default class AppImageHover extends Vue {
     return {
       ...this.bgImage,
       src: this.isHovering ? this.hoverImage : this.bgImage.src,
-      bgColor: 'var(--white-color)',
+      bgColor: "var(--white-color)",
       onClick: () => {
         this.bgImage?.onClick?.();
         this.toggleLightbox(true);
@@ -77,7 +78,7 @@ export default class AppImageHover extends Vue {
   }
 
   get hideLoader() {
-    return this.loadingStyle.width === '100%';
+    return this.loadingStyle.width === "100%";
   }
 
   onLoadedImage() {
