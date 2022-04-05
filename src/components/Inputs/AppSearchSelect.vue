@@ -31,11 +31,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit, Watch } from 'vue-property-decorator';
-import { SelectDataDynamic } from '../Inputs';
-import AppTextInput from './AppTextInput.vue';
-import AppImage from '../Image';
-import isEmpty from 'lodash/isEmpty';
+import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
+import { SelectDataDynamic } from "../Inputs";
+import AppTextInput from "./AppTextInput.vue";
+import AppImage from "../Image";
+import isEmpty from "lodash/isEmpty";
 
 @Component({ components: { AppTextInput, AppImage } })
 export default class AppSearchSelect extends Vue {
@@ -43,7 +43,6 @@ export default class AppSearchSelect extends Vue {
   @Prop() options: SelectDataDynamic[];
   @Prop() loading: boolean;
   @Prop() placeholder: string;
-  @Prop() label: string;
   @Prop() allowNonSelectOption: boolean;
   @Prop() disabled: boolean;
 
@@ -51,7 +50,7 @@ export default class AppSearchSelect extends Vue {
   selected: SelectDataDynamic | null = null;
 
   get someOptionsHaveImage() {
-    return this.options.some(option => option.image);
+    return this.options.some((option) => option.image);
   }
 
   get showOptions() {
@@ -63,20 +62,20 @@ export default class AppSearchSelect extends Vue {
     this.useIgnoreOverflow = this.showOptions;
   }
 
-  @Emit('optionClick')
+  @Emit("optionClick")
   optionClick(option: SelectDataDynamic) {
     this.input(option.label);
     this.selected = option;
     return option;
   }
 
-  @Emit('input')
+  @Emit("input")
   input(value: string) {
     this.selected = null;
     return value;
   }
 
-  @Watch('options')
+  @Watch("options")
   onOptionsChanged() {
     this.runOverflowIgnore();
   }

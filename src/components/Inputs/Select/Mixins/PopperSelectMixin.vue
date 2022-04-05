@@ -1,11 +1,12 @@
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { BasePlacement, createPopper, top, bottom } from '@popperjs/core';
+import { Component, Vue } from "vue-property-decorator";
+import { BasePlacement, createPopper, top, bottom } from "@popperjs/core";
 
 @Component({ components: {} })
 export default class PopperSelectMixin extends Vue {
   placement: BasePlacement = top;
 
+  //@ts-ignore
   withPopper(dropdownList, component, { width }) {
     /**
      * We need to explicitly define the dropdown width since
@@ -27,17 +28,20 @@ export default class PopperSelectMixin extends Vue {
       placement: this.placement,
       modifiers: [
         {
-          name: 'offset',
+          name: "offset",
           options: {
             offset: [0, -1],
           },
         },
         {
-          name: 'toggleClass',
+          name: "toggleClass",
           enabled: true,
-          phase: 'write',
+          phase: "write",
           fn({ state }) {
-            component.$el.classList.toggle('drop-up', state.placement === 'top');
+            component.$el.classList.toggle(
+              "drop-up",
+              state.placement === "top"
+            );
           },
         },
       ],

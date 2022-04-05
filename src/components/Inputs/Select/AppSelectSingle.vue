@@ -4,7 +4,7 @@
       @input="inputChanged"
       :value="value"
       :options="options"
-      :clearable="false"
+      :clearable="clearable"
       append-to-body
       :calculate-position="withPopper"
     >
@@ -22,19 +22,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Mixins, Prop, Vue } from 'vue-property-decorator';
-import { SelectData } from './interfaces';
-import PopperSelectMixin from './Mixins/PopperSelectMixin.vue';
+import { Component, Emit, Mixins, Prop, Vue } from "vue-property-decorator";
+import { SelectData } from "./interfaces";
+import PopperSelectMixin from "./Mixins/PopperSelectMixin.vue";
+//@ts-ignore
+import vSelect from "vue-select";
+
+Vue.component("v-select", vSelect);
 
 @Component({})
 export default class AppSelectSingle extends Mixins(PopperSelectMixin) {
   @Prop() value!: string;
-  @Prop() options!: SelectData;
-  @Prop({ default: 'Sorry, no matching options.' }) noOptionsText: string;
+  @Prop() options!: SelectData[];
+  @Prop({ default: "Sorry, no matching options." }) noOptionsText: string;
   @Prop({ default: false }) clearable: boolean;
   @Prop({ default: true }) preselectFirst: boolean;
 
-  @Emit('input')
+  @Emit("input")
   inputChanged(selectedData: any) {
     return selectedData;
   }

@@ -21,10 +21,12 @@
   "dependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.7",
     "@babel/plugin-proposal-optional-chaining": "^7.16.7",
+    "axios": "^0.26.1",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "lodash": "^4.17.21",
-    "tsconfig-paths-webpack-plugin": "^3.5.2"
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "vue-select": "^3.18.3"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -36,6 +38,7 @@
     "@storybook/vue": "^6.4.20",
     "@types/jest": "^24.0.19",
     "@types/lodash": "^4.14.181",
+    "@types/vue-select": "^3.16.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.15",
