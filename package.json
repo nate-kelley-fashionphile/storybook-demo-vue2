@@ -1,6 +1,6 @@
 {
   "name": "@nate-kelley-fashionphile/vue2-common",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "private": false,
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -15,7 +15,8 @@
     "prepare": "npm run build",
     "serve": "vue-cli-service serve",
     "storybook": "start-storybook -p 6006",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.16.7",
