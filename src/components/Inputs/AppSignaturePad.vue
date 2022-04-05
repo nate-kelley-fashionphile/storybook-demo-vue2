@@ -15,6 +15,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator";
+//@ts-ignore
 import VueSignaturePad from "vue-signature-pad";
 import { AppIconButton } from "../Buttons";
 
