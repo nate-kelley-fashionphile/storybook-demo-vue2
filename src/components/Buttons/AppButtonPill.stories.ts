@@ -6,11 +6,7 @@ export default {
   component: AppButtonPillComponent,
   argTypes: {
     onClick: {},
-    type: {
-      options: [...Object.keys(ButtonTypes)],
-      control: { type: "select" },
-      defaultValue: Object.keys(ButtonTypes)[0],
-    },
+    //
   },
 };
 

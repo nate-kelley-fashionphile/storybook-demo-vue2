@@ -5,14 +5,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
-import { buttonTypeConfig, ButtonTypes } from './config';
+import { Vue, Component, Prop, Emit } from "vue-property-decorator";
 
 @Component({})
 export default class AppButtonPill extends Vue {
   @Prop() text: string;
   @Prop() active: boolean;
-  @Prop({ default: ButtonTypes.primary }) type: ButtonTypes;
 
   get dynamicClass() {
     return {
@@ -21,7 +19,7 @@ export default class AppButtonPill extends Vue {
     };
   }
 
-  @Emit('onClick')
+  @Emit("onClick")
   onClick() {
     return;
   }
